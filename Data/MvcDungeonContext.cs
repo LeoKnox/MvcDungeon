@@ -9,6 +9,6 @@ namespace MvcDungeon.Data
         {
         }
 
-        public DbSet<Dungeon> dungeon { get; set; }
+        public DbSet<Dungeon> Dungeon { get; set; }
     }
 }

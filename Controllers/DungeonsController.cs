@@ -22,7 +22,7 @@ namespace MvcDungeon.Controllers
         // GET: Dungeons
         public async Task<IActionResult> Index()
         {
-            return View(await _context.dungeon.ToListAsync());
+            return View(await _context.Dungeon.ToListAsync());
         }
 
         // GET: Dungeons/Details/5
@@ -33,7 +33,7 @@ namespace MvcDungeon.Controllers
                 return NotFound();
             }
 
-            var dungeon = await _context.dungeon
+            var dungeon = await _context.Dungeon
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (dungeon == null)
             {
@@ -73,7 +73,7 @@ namespace MvcDungeon.Controllers
                 return NotFound();
             }
 
-            var dungeon = await _context.dungeon.FindAsync(id);
+            var dungeon = await _context.Dungeon.FindAsync(id);
             if (dungeon == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace MvcDungeon.Controllers
                 return NotFound();
             }
 
-            var dungeon = await _context.dungeon
+            var dungeon = await _context.Dungeon
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (dungeon == null)
             {
@@ -139,15 +139,15 @@ namespace MvcDungeon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dungeon = await _context.dungeon.FindAsync(id);
-            _context.dungeon.Remove(dungeon);
+            var dungeon = await _context.Dungeon.FindAsync(id);
+            _context.Dungeon.Remove(dungeon);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DungeonExists(int id)
         {
-            return _context.dungeon.Any(e => e.Id == id);
+            return _context.Dungeon.Any(e => e.Id == id);
         }
     }
 }
