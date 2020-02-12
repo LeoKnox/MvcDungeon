@@ -20,8 +20,12 @@ namespace MvcDungeon.Controllers
         }
 
         // GET: Dungeons
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string dungeonType, string searchString)
         {
+            IQueryable<string> typeQuery = from d in _context.Dungeon
+                                           orderby d.Type
+                                           select d.Type;
+
             var dungeons = from d in _context.Dungeon
                            select d;
 
@@ -29,7 +33,19 @@ namespace MvcDungeon.Controllers
             {
                 dungeons = dungeons.Where(s => s.RoomName.Contains(searchString));
             }
-            return View(await dungeons.ToListAsync());
+
+            if (!string.IsNullOrEmpty(dungeonType))
+            {
+                dungeons = dungeons.Where(x => x.Type == dungeonType);
+            }
+
+            var dungeonTypeVM = new DungeonTypeViewModel
+            {
+                Types = new SelectList(await typeQuery.Distinct().ToListAsync()),
+                Dungeons = await dungeons.ToListAsync()
+            };
+
+            return View(dungeonTypeVM);
         }
 
         // GET: Dungeons/Details/5

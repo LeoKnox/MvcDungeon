@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MvcDungeon.Models.Dungeon>
+﻿@model MvcDungeon.Models.DungeonTypeViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +12,9 @@
 
 <form asp-controller="Dungeons" asp-action="Index">
     <p>
+        <select asp-for="DungeonType" asp-items="Model.Types">
+            <option value="">All</option>
+        </select>
         Room Name: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
     </p>
@@ -21,22 +24,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RoomName)
+                @Html.DisplayNameFor(model => model.Dungeons[0].RoomName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.Dungeons[0].Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.length)
+                @Html.DisplayNameFor(model => model.Dungeons[0].length)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.width)
+                @Html.DisplayNameFor(model => model.Dungeons[0].width)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Dungeons) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.RoomName)
