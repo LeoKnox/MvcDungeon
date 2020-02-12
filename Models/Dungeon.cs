@@ -15,5 +15,6 @@ namespace MvcDungeon.Models
         public string Type { get; set; }
         public int length { get; set; }
         public int width { get; set; }
+        public int height { get; set; }
     }
 }

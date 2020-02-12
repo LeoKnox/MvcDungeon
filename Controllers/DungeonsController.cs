@@ -77,7 +77,7 @@ namespace MvcDungeon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RoomName,Type,length,width")] Dungeon dungeon)
+        public async Task<IActionResult> Create([Bind("Id,RoomName,Type,length,width,height")] Dungeon dungeon)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace MvcDungeon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RoomName,Type,length,width")] Dungeon dungeon)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,RoomName,Type,length,width,height")] Dungeon dungeon)
         {
             if (id != dungeon.Id)
             {

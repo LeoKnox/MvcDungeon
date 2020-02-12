@@ -26,7 +26,8 @@ namespace MvcDungeon.Models
                         RoomName = "Entry",
                         Type = "Stone",
                         length = 3,
-                        width = 5
+                        width = 5,
+                        height = 10
                     }
                 );
                 context.SaveChanges();
