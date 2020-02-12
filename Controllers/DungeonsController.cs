@@ -20,9 +20,16 @@ namespace MvcDungeon.Controllers
         }
 
         // GET: Dungeons
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Dungeon.ToListAsync());
+            var dungeons = from d in _context.Dungeon
+                           select d;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                dungeons = dungeons.Where(s => s.RoomName.Contains(searchString));
+            }
+            return View(await dungeons.ToListAsync());
         }
 
         // GET: Dungeons/Details/5
