@@ -9,12 +9,13 @@ namespace MvcDungeon.Models
 {
     public class Dungeon
     {
-        public int Id { get; set; }
+        public int DungeonId { get; set; }
         [Display(Name = "Room Name")]
         public string RoomName { get; set; }
         public string Type { get; set; }
         public int length { get; set; }
         public int width { get; set; }
         public int height { get; set; }
+        //public List<Door> Doors { get; set; }
     }
 }
