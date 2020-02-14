@@ -9,6 +9,8 @@ namespace MvcDungeon.Models
     {
         public string Wall { get; set; }
         public int Location { get; set; }
-        public Dungeon Dungeon { get; set; }
+        
+        public int RoomId {get; set; }
+        public Dungeon Dungeon {get; set; }
     }
 }
